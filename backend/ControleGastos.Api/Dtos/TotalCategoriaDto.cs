@@ -2,13 +2,13 @@ using ControleGastos.Api.Enums;
 
 namespace ControleGastos.Api.Dtos;
 
-public class TotalCategoriaDto
+public sealed record TotalCategoriaDto
 {
-    public ulong Id { get; set; }
-    public string Descricao { get; set; } = string.Empty;
-    public EFinalidadeCategoria Finalidade { get; set; }
+    public ulong Id { get; init; }
+    public string Descricao { get; init; } = string.Empty;
+    public EFinalidadeCategoria Finalidade { get; init; }
     
-    public decimal TotalReceitas { get; set; }
-    public decimal TotalDespesas { get; set; }
+    public decimal TotalReceitas { get; init; }
+    public decimal TotalDespesas { get; init; }
     public decimal Saldo => TotalReceitas - TotalDespesas;
 }

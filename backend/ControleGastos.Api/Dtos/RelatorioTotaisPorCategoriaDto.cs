@@ -1,9 +1,9 @@
 namespace ControleGastos.Api.Dtos;
 
-public class RelatorioTotaisPorCategoriaDto
+public sealed record RelatorioTotaisPorCategoriaDto
 {
-    public IEnumerable<TotalCategoriaDto> TotaisPorCategoria { get; set; }
-    public decimal TotalReceitasGeral { get; set; }
-    public decimal TotalDespesasGeral { get; set; }
+    public IEnumerable<TotalCategoriaDto>? TotaisPorCategoria { get; init; }
+    public decimal TotalReceitasGeral { get; init; }
+    public decimal TotalDespesasGeral { get; init; }
     public decimal SaldoGeral => TotalReceitasGeral - TotalDespesasGeral;
 }
