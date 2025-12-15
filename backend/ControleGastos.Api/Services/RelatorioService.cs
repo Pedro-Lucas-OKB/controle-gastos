@@ -25,12 +25,12 @@ public class RelatorioService : IRelatorioService
                 Id = p.Id,
                 NomeCompleto = p.NomeCompleto,
                 Idade = p.Idade,
-                TotalReceitas = p.Transacoes
+                TotalReceitas = (decimal)p.Transacoes
                     .Where(t => t.Tipo == ETipoTransacao.Receita)
-                    .Sum(t => t.Valor),
-                TotalDespesas = p.Transacoes
+                    .Sum(t => (double)t.Valor),
+                TotalDespesas = (decimal)p.Transacoes
                     .Where(t => t.Tipo == ETipoTransacao.Despesa)
-                    .Sum(t => t.Valor),
+                    .Sum(t => (double)t.Valor),
             })
             .ToListAsync();
 
@@ -50,12 +50,12 @@ public class RelatorioService : IRelatorioService
                 Id = c.Id,
                 Descricao = c.Descricao,
                 Finalidade = c.Finalidade,
-                TotalReceitas = c.Transacoes
+                TotalReceitas = (decimal)c.Transacoes
                     .Where(t => t.Tipo == ETipoTransacao.Receita)
-                    .Sum(t => t.Valor),
-                TotalDespesas = c.Transacoes
+                    .Sum(t => (double)t.Valor),
+                TotalDespesas = (decimal)c.Transacoes
                     .Where(t => t.Tipo == ETipoTransacao.Despesa)
-                    .Sum(t => t.Valor),
+                    .Sum(t => (double)t.Valor),
             })
             .ToListAsync();
 
