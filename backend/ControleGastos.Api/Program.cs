@@ -1,4 +1,6 @@
 using ControleGastos.Api.Data;
+using ControleGastos.Api.Services;
+using ControleGastos.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// Adicionando DI dos services
+builder.Services.AddScoped<IPessoaService, PessoaService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
+builder.Services.AddScoped<IRelatorioService, RelatorioService>();
 
 var app = builder.Build();
 
