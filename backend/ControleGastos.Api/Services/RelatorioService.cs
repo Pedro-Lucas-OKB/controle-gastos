@@ -41,4 +41,29 @@ public class RelatorioService : IRelatorioService
             TotalDespesasGeral = totaisPorPessoa.Sum(t => t.TotalDespesas)
         };
     }
+
+    public async Task<RelatorioTotaisPorCategoriaDto> ObterTotaisPorCategoriaAsync()
+    {
+        var totaisPorCategoria = await _context.Categorias
+            .Select(c => new TotalCategoriaDto
+            {
+                Id = c.Id,
+                Descricao = c.Descricao,
+                Finalidade = c.Finalidade,
+                TotalReceitas = c.Transacoes
+                    .Where(t => t.Tipo == ETipoTransacao.Receita)
+                    .Sum(t => t.Valor),
+                TotalDespesas = c.Transacoes
+                    .Where(t => t.Tipo == ETipoTransacao.Despesa)
+                    .Sum(t => t.Valor),
+            })
+            .ToListAsync();
+
+        return new RelatorioTotaisPorCategoriaDto()
+        {
+            TotaisPorCategoria = totaisPorCategoria,
+            TotalReceitasGeral = totaisPorCategoria.Sum(t => t.TotalReceitas),
+            TotalDespesasGeral = totaisPorCategoria.Sum(t => t.TotalDespesas)
+        };
+    }
 }
