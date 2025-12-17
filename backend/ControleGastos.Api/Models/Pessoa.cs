@@ -11,11 +11,11 @@ public class Pessoa
     [Key]
     public ulong Id { get; set; }
     
-    [Required]
-    [MaxLength(150)]
+    [Required(ErrorMessage = "É obrigatório informar o nome completo.")]
+    [MaxLength(150, ErrorMessage = "Limite de caracteres excedido.")]
     public string NomeCompleto { get; set; } = string.Empty;
     
-    [Required]
+    [Required(ErrorMessage = "É obrigatório informar a idade.")]
     public ushort Idade { get; set; }
     
     // Relacionamentos
