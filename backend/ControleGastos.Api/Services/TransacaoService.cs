@@ -31,7 +31,7 @@ public class TransacaoService : ITransacaoService
             throw new InvalidOperationException("Categoria não existe.");
 
         // Verificando idade da pessoa
-        if (pessoa.Idade < 18 && categoria.Finalidade != EFinalidadeCategoria.Despesa)
+        if (pessoa.Idade < 18 && transacao.Tipo != ETipoTransacao.Despesa)
             throw new InvalidOperationException("Pessoas menores de idade só podem realizar despesas.");
 
         // Verificando compatibilidade do tipo de transação com a finalidade da categoria
@@ -55,5 +55,31 @@ public class TransacaoService : ITransacaoService
         return await _context.Transacoes
             .AsNoTracking() // Boa prática não 'trackear' entidades em ações de somente consulta
             .ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Transacao>> ListarCompletoAsync()
+    {
+        return await _context.Transacoes
+            .AsNoTracking() // Boa prática não 'trackear' entidades em ações de somente consulta
+            .Include(t => t.Categoria)
+            .Include(t => t.Pessoa)
+            .ToListAsync();
+    }
+
+    public async Task<Transacao?> ObterPorIdAsync(ulong id)
+    {
+        return await _context.Transacoes
+            .AsNoTracking()
+            .FirstOrDefaultAsync(t => t.Id == id);
+    }
+
+    // Retorna a transação com a categoria e a pessoa
+    public async Task<Transacao?> ObterPorIdCompletoAsync(ulong id)
+    {
+        return await _context.Transacoes
+            .AsNoTracking()
+            .Include(t => t.Categoria)
+            .Include(t => t.Pessoa)
+            .FirstOrDefaultAsync(t => t.Id == id);
     }
 }

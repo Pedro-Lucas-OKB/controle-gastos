@@ -8,14 +8,16 @@ public class Transacao
     [Key]
     public ulong Id { get; set; }
     
-    [Required]
-    [MaxLength(300)]
+    [Required(ErrorMessage = "É obrigatório informar a descrição da transação.")]
+    [MaxLength(300, ErrorMessage = "Limite de caracteres excedido.")]
     public string Descricao { get; set; } = string.Empty;
     
-    [Required]
-    [Range(0, double.MaxValue)] // Podem estar registradas transações gratuitas também
+    [Required(ErrorMessage = "É obrigatório informar o valor da transação.")]
+    [Range(0, double.MaxValue, ErrorMessage = "Valor inválido.")] // Podem estar registradas transações gratuitas também
     public decimal Valor { get; set; }
     
+    [Required(ErrorMessage = "É obrigatório informar o tipo da transação.")]
+    [Range(1, 2, ErrorMessage = "O tipo da transação deve ser 1 ou 2.")]
     public ETipoTransacao Tipo { get; set; }
     
     // Relacionamentos
