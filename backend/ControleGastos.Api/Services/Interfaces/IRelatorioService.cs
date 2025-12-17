@@ -1,4 +1,4 @@
-using ControleGastos.Api.Dtos;
+using ControleGastos.Api.Dtos.Relatorios;
 
 namespace ControleGastos.Api.Services.Interfaces;
 

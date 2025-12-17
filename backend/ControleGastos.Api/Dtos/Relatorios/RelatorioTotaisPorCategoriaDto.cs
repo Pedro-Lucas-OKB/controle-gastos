@@ -1,4 +1,4 @@
-namespace ControleGastos.Api.Dtos;
+namespace ControleGastos.Api.Dtos.Relatorios;
 
 public sealed record RelatorioTotaisPorCategoriaDto
 {

@@ -1,4 +1,4 @@
-using ControleGastos.Api.Dtos;
+using ControleGastos.Api.Dtos.Relatorios;
 using ControleGastos.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

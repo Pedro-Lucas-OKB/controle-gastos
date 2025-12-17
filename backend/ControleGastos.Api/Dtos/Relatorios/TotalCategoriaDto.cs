@@ -1,6 +1,6 @@
 using ControleGastos.Api.Enums;
 
-namespace ControleGastos.Api.Dtos;
+namespace ControleGastos.Api.Dtos.Relatorios;
 
 public sealed record TotalCategoriaDto
 {

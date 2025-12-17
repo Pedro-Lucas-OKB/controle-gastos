@@ -1,5 +1,5 @@
 using ControleGastos.Api.Data;
-using ControleGastos.Api.Dtos;
+using ControleGastos.Api.Dtos.Relatorios;
 using ControleGastos.Api.Enums;
 using ControleGastos.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
