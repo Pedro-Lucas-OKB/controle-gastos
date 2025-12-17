@@ -43,4 +43,11 @@ public class PessoaService : IPessoaService
             .Include(p => p.Transacoes)
             .ToListAsync();
     }
+
+    public async Task<Pessoa?> ObterPorIdAsync(ulong id)
+    {
+        return await _context.Pessoas
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == id);
+    }
 }
