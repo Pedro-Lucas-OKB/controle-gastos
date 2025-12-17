@@ -28,4 +28,11 @@ public class CategoriaService : ICategoriaService
             .AsNoTracking()
             .ToListAsync();
     }
+
+    public async Task<Categoria?> ObterPorIdAsync(ulong id)
+    {
+        return await _context.Categorias
+            .AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
 }

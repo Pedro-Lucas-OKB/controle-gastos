@@ -6,4 +6,5 @@ public interface ICategoriaService
 {
     Task<Categoria> CriarAsync(Categoria categoria);
     Task<IEnumerable<Categoria>> ListarAsync();
+    Task<Categoria?> ObterPorIdAsync(ulong id);
 }
